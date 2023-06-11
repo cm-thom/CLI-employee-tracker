@@ -11,11 +11,10 @@ const connection = mysql.createConnection({
 
 //put the inquirer logic here to run in the CLI
 //probably also could put the mysql2 logic here for joins unless that needs routes? idk. there's no server needed?
-// will have to seed table columns with data. (seeds.sql)
 
-inquirer.createPromptModule([
+inquirer.prompt([
     {
-        
+
     }
 ])
 
