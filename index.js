@@ -9,9 +9,6 @@ const connection = mysql.createConnection({
     password: process.env.DB_PASSWORD 
 });
 
-//put the inquirer logic here to run in the CLI
-//probably also could put the mysql2 logic here for joins unless that needs routes? idk. there's no server needed?
-
 inquirer.prompt([
     {
         type: 'list',
@@ -49,15 +46,24 @@ inquirer.prompt([
     });
 
 const viewAllDepartments = () => {
-    //logic
+    connection.query(
+        'SELECT * FROM department',
+        (err, results) => console.table(results)
+    )
 }
 
 const viewAllRoles = () => {
-    //logic
+    connection.query(
+        'SELECT * FROM role',
+        (err, results) => console.table(results)
+    )
 }
 
 const viewAllEmployees = () => {
-    //logic
+    connection.query(
+        'SELECT * FROM employee',
+        (err, results) => console.table(results)
+    )
 }
 
 const addDepartment = () => {
