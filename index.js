@@ -14,11 +14,18 @@ const connection = mysql.createConnection({
 
 inquirer.prompt([
     {
-
-    }
-])
-
-
-
-// FUNCTIONALITY
-// - run index.js, stuff happens
+        type: 'list',
+        message: 'What would you like to do?',
+        choices: ['View All Departments', 'View All Roles', 'View All Employees', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role'],
+        name: 'userSelection'
+        
+    }]).then( choice => {
+        switch(choice.userSelection) {
+            case 'View All Departments':
+                viewAllDepartments();
+                break;
+            default:
+                console.log('it\'s broken')
+                console.log(choice.userSelection)
+        }
+    });
