@@ -16,8 +16,8 @@ inquirer.prompt([
         choices: ['View All Departments', 'View All Roles', 'View All Employees', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role'],
         name: 'userSelection'
         
-    }]).then( choice => {
-        switch(choice.userSelection) {
+    }]).then( data => {
+        switch(data.userSelection) {
             case 'View All Departments':
                 viewAllDepartments();
                 break;
@@ -50,34 +50,51 @@ const viewAllDepartments = () => {
         'SELECT * FROM department',
         (err, results) => console.table(results)
     )
-}
+};
 
 const viewAllRoles = () => {
     connection.query(
         'SELECT * FROM role',
         (err, results) => console.table(results)
     )
-}
+};
 
 const viewAllEmployees = () => {
     connection.query(
         'SELECT * FROM employee',
         (err, results) => console.table(results)
     )
-}
+};
 
 const addDepartment = () => {
-    //logic
-}
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'Enter department name:',
+            name: 'departmentName'
+        }
+    ]).then( (data) => {
+        connection.query(
+            `INSERT INTO department (department_name) VALUES ('${data.departmentName}')`,
+            (err, results) => console.log(`${data.departmentName} department added!`)
+        )
+    })
+};
 
 const addRole = () => {
-    //logic
-}
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: 'Enter role name:',
+            name: roleName
+        }
+    ])
+};
 
 const addEmployee = () => {
     //logic
-}
+};
 
 const updateEmployeeRole = () => {
     //logic
-}
+};
